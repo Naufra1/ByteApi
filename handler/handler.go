@@ -6,37 +6,37 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CreateComputerHandler(ctx *gin.Context){
+func CreateComputerHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg": "Success",
 	})
 }
 
-func ShowComputerHandler(ctx *gin.Context){
+func ShowComputerHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg": "Success",
 	})
 }
 
-func ShowComputersHandler(ctx *gin.Context){
+func ShowComputersHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg": "Success",
 	})
 }
 
-func CreateUserHandler(ctx *gin.Context){
+func CreateUserHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg": "Success",
 	})
 }
 
-func ShowUserHandler(ctx *gin.Context){
+func ShowUserHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg": "Success",
 	})
 }
 
-func LoginUserHandler(ctx *gin.Context){
+func LoginUserHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg": "Success",
 	})

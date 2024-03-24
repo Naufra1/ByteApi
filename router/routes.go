@@ -12,7 +12,7 @@ func InitializeRoutes(r *gin.Engine) {
 		v1.GET("/computers", handler.ShowComputersHandler)
 
 		v1.POST("/computer", handler.CreateComputerHandler)
-		
+
 		v1.GET("/computer", handler.ShowComputersHandler)
 
 		v1.POST("/signup", handler.CreateUserHandler)
@@ -21,4 +21,4 @@ func InitializeRoutes(r *gin.Engine) {
 
 		v1.GET("/user", handler.ShowUserHandler)
 	}
-}	
+}
