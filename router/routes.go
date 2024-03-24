@@ -1,8 +1,7 @@
 package router
 
 import (
-	"net/http"
-
+	"github.com/Naufra1/ByteApi/handler"
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,34 +9,16 @@ func InitializeRoutes(r *gin.Engine) {
 
 	v1 := r.Group("/api/v1")
 	{
-		v1.GET("/computers", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Success",
-			})
-		})
+		v1.GET("/computers", handler.ShowComputersHandler)
 
-		v1.GET("/computer", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Success",
-			})
-		})
+		v1.POST("/computer", handler.CreateComputerHandler)
+		
+		v1.GET("/computer", handler.ShowComputersHandler)
 
-		v1.GET("/signup", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Success",
-			})
-		})
+		v1.POST("/signup", handler.CreateUserHandler)
 
-		v1.GET("/signin", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Success",
-			})
-		})
+		v1.GET("/signin", handler.LoginUserHandler)
 
-		v1.GET("/user", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Success",
-			})
-		})
+		v1.GET("/user", handler.ShowUserHandler)
 	}
 }	
