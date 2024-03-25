@@ -1,43 +1,16 @@
 package handler
 
 import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"github.com/Naufra1/ByteApi/config"
+	"gorm.io/gorm"
 )
 
-func CreateComputerHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"msg": "Success",
-	})
-}
+var (
+	logger *config.Logger
+	db     *gorm.DB
+)
 
-func ShowComputerHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"msg": "Success",
-	})
-}
-
-func ShowComputersHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"msg": "Success",
-	})
-}
-
-func CreateUserHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"msg": "Success",
-	})
-}
-
-func ShowUserHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"msg": "Success",
-	})
-}
-
-func LoginUserHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"msg": "Success",
-	})
+func InitHandler() {
+	logger = config.GetLogger("handler")
+	db = config.GetSQLite()
 }

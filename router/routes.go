@@ -6,6 +6,8 @@ import (
 )
 
 func InitializeRoutes(r *gin.Engine) {
+	// Iniciando o handler
+	handler.InitHandler()
 
 	v1 := r.Group("/api/v1")
 	{
