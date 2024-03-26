@@ -20,23 +20,21 @@ type Computer struct {
 	Storage     string
 }
 
-type ComputerSpecs struct {
-	Case        string `json:"case"`
-	Cpu         string `json:"cpu"`
-	Cooler      string `json:"cooler"`
-	Graphics    string `json:"gpu"`
-	Motherboard string `json:"motherboard"`
-	Ram         string `json:"ram"`
-	Storage     string `json:"storage"`
-}
-
 type ComputerResponse struct {
-	ID        uint          `json:"id"`
-	CreatedAt time.Time     `json:"createdAt"`
-	UpdatedAt time.Time     `json:"updatedAt"`
-	DeletedAt time.Time     `json:"deletedAt,omitempty"`
-	Name      string        `json:"name"`
-	Image     string        `json:"image"`
-	Price     string        `json:"price"`
-	Specs     ComputerSpecs `json:"Specs"`
+	ID        uint      `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
+	DeletedAt time.Time `json:"deletedAt,omitempty"`
+	Name      string    `json:"name"`
+	Image     string    `json:"image"`
+	Price     string    `json:"price"`
+	Specs     struct {
+		Case        string `json:"case"`
+		Cpu         string `json:"cpu"`
+		Cooler      string `json:"cooler"`
+		Graphics    string `json:"gpu"`
+		Motherboard string `json:"motherboard"`
+		Ram         string `json:"ram"`
+		Storage     string `json:"storage"`
+	} `json:"Specs"`
 }
