@@ -10,10 +10,10 @@ type User struct {
 	gorm.Model
 	Name          string
 	Email         string
-	Password      string
 	CriptPassword string
 	Birthday      *time.Time
 	Number        int64
+	Address       string
 }
 
 type UserResponse struct {
@@ -23,8 +23,8 @@ type UserResponse struct {
 	DeletedAt     time.Time  `json:"deletedAt,omitempty"`
 	Name          string     `json:"name"`
 	Email         string     `json:"email"`
-	Password      string     `json:"password"`
 	CriptPassword string     `json:"criptpassword"`
 	Birthday      *time.Time `json:"birthday"`
 	Number        int64      `json:"number"`
+	Address       string     `json:"address"`
 }

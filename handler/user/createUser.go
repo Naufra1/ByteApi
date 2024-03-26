@@ -1,4 +1,4 @@
-package handler
+package user
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func ShowComputerHandler(ctx *gin.Context) {
+func CreateUserHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg": "Success",
 	})

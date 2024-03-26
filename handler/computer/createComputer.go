@@ -1,10 +1,18 @@
-package handler
+package computer
 
 import (
 	"net/http"
 
+	"github.com/Naufra1/ByteApi/config"
+	"github.com/Naufra1/ByteApi/handler"
 	"github.com/Naufra1/ByteApi/schemas"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
+)
+
+var (
+	logger *config.Logger
+	db     *gorm.DB
 )
 
 func CreateComputerHandler(ctx *gin.Context) {
@@ -14,7 +22,7 @@ func CreateComputerHandler(ctx *gin.Context) {
 
 	if err := request.Validate(); err != nil {
 		logger.Errorf("erro na validação: %v", err.Error())
-		sendError(ctx, http.StatusBadRequest, err.Error())
+		handler.SendError(ctx, http.StatusBadRequest, err.Error())
 		return
 	}
 
@@ -33,8 +41,8 @@ func CreateComputerHandler(ctx *gin.Context) {
 
 	if err := db.Create(&computers).Error; err != nil {
 		logger.Errorf("erro adicionando computador: %v", err.Error())
-		sendError(ctx, http.StatusInternalServerError, "erro ao criar tabela")
+		handler.SendError(ctx, http.StatusInternalServerError, "erro ao criar tabela")
 		return
 	}
-	sendSuccess(ctx, "create-computer", computers)
+	handler.SendSuccess(ctx, "create-computer", computers)
 }

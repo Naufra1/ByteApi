@@ -1,8 +1,10 @@
-package handler
+package user
 
 import (
 	"fmt"
 	"time"
+
+	"github.com/Naufra1/ByteApi/handler/computer"
 )
 
 type CreateUserRequest struct {
@@ -20,22 +22,22 @@ func (r *CreateUserRequest) Validate() error {
 		return fmt.Errorf("corpo do request inválido")
 	}
 	if r.Name == "" {
-		return ErrParamIsRequired("name", "string")
+		return computer.ErrParamIsRequired("name", "string")
 	}
 	if r.Email == "" {
-		return ErrParamIsRequired("email", "string")
+		return computer.ErrParamIsRequired("email", "string")
 	}
 	if r.Password == "" {
-		return ErrParamIsRequired("password", "string")
+		return computer.ErrParamIsRequired("password", "string")
 	}
 	if r.Birthday == nil {
-		return ErrParamIsRequired("birthday", "time*Time")
+		return computer.ErrParamIsRequired("birthday", "time*Time")
 	}
 	if r.Number <= 0 {
-		return ErrParamIsRequired("number", "int64")
+		return computer.ErrParamIsRequired("number", "int64")
 	}
 	if r.Address == "" {
-		return ErrParamIsRequired("address", "string")
+		return computer.ErrParamIsRequired("address", "string")
 	}
 
 	return nil

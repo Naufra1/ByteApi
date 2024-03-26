@@ -1,4 +1,4 @@
-package handler
+package computer
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func LoginUserHandler(ctx *gin.Context) {
+func ShowComputerHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg": "Success",
 	})
