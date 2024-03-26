@@ -11,7 +11,7 @@ type User struct {
 	Name          string
 	Email         string
 	CriptPassword string
-	Birthday      *time.Time
+	Birthday      string
 	Number        int64
 	Address       string
 }

@@ -1,4 +1,4 @@
-package computer
+package handler
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func ShowComputersHandler(ctx *gin.Context) {
+func ShowComputerHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg": "Success",
 	})

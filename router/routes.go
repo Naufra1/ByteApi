@@ -2,8 +2,6 @@ package router
 
 import (
 	"github.com/Naufra1/ByteApi/handler"
-	"github.com/Naufra1/ByteApi/handler/computer"
-	"github.com/Naufra1/ByteApi/handler/user"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,16 +11,16 @@ func InitializeRoutes(r *gin.Engine) {
 
 	v1 := r.Group("/api/v1")
 	{
-		v1.GET("/computers", computer.ShowComputersHandler)
+		v1.GET("/computers", handler.ShowComputersHandler)
 
-		v1.POST("/computer", computer.CreateComputerHandler)
+		v1.POST("/computer", handler.CreateComputerHandler)
 
-		v1.GET("/computer", computer.ShowComputersHandler)
+		v1.GET("/computer", handler.ShowComputersHandler)
 
-		v1.POST("/signup", user.CreateUserHandler)
+		v1.POST("/signup", handler.CreateUserHandler)
 
-		v1.GET("/signin", user.LoginUserHandler)
+		v1.GET("/signin", handler.LoginUserHandler)
 
-		v1.GET("/user", user.ShowUserHandler)
+		v1.GET("/user", handler.ShowUserHandler)
 	}
 }
