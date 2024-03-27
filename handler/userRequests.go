@@ -14,6 +14,11 @@ type CreateUserRequest struct {
 	Address         string `json:"address"`
 }
 
+type CreateLoginRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 func (r *CreateUserRequest) Validate() error {
 	if r.Name == "" && r.Email == "" && r.Password == "" && r.Birthday == "" && r.Number <= 0 && r.Address == "" && r.ConfirmPassword == "" {
 		return fmt.Errorf("corpo do request inválido")
@@ -41,6 +46,20 @@ func (r *CreateUserRequest) Validate() error {
 	}
 	if r.Address == "" {
 		return ErrParamIsRequired("address", "string")
+	}
+
+	return nil
+}
+
+func (r *CreateLoginRequest) ValidateUser() error {
+	if r.Email == "" && r.Password == "" {
+		return fmt.Errorf("corpo do request inválido")
+	}
+	if r.Email == "" {
+		return ErrParamIsRequired("email", "string")
+	}
+	if r.Password == "" {
+		return ErrParamIsRequired("password", "string")
 	}
 
 	return nil

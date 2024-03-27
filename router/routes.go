@@ -19,7 +19,7 @@ func InitializeRoutes(r *gin.Engine) {
 
 		v1.POST("/signup", handler.CreateUserHandler)
 
-		v1.GET("/signin", handler.LoginUserHandler)
+		v1.POST("/signin", handler.LoginUserHandler)
 
 		v1.GET("/user", handler.ShowUserHandler)
 	}
