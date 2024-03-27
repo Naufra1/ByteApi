@@ -2,6 +2,7 @@ package router
 
 import (
 	"github.com/Naufra1/ByteApi/handler"
+	"github.com/Naufra1/ByteApi/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,6 +22,6 @@ func InitializeRoutes(r *gin.Engine) {
 
 		v1.POST("/signin", handler.LoginUserHandler)
 
-		v1.GET("/user", handler.ShowUserHandler)
+		v1.GET("/user", middleware.VerifyToken, handler.ShowUserHandler)
 	}
 }

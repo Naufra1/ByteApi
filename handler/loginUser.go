@@ -34,14 +34,15 @@ func LoginUserHandler(ctx *gin.Context) {
 		logger.Errorf("senha inválida. Digite a senha correta")
 		return
 	}
+
 	// Criando Token JWT
-	token, err := middleware.CreateToken(users.Name, users.Email, users.Birthday, users.Address, users.Number)
+	token, err := middleware.CreateToken(users.Model.ID, users.Name, users.Email, users.Birthday, users.Address, users.Number)
 	if err != nil {
 		SendError(ctx, http.StatusInternalServerError, "erro ao gerar o token")
 		logger.Errorf("erro ao gerar o token")
 		return
 	}
-	ctx.Header("Authorization", token)
 
+	ctx.Header("Authorization", token)
 	SendSuccess(ctx, "login-user", request)
 }
