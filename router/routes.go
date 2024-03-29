@@ -23,5 +23,7 @@ func InitializeRoutes(r *gin.Engine) {
 		v1.POST("/signin", handler.LoginUserHandler)
 
 		v1.GET("/user/:id", middleware.VerifyToken, handler.ShowUserHandler)
+
+		v1.PATCH("/user/:id", middleware.VerifyToken, handler.ChangeUserPassword)
 	}
 }

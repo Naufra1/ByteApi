@@ -30,8 +30,8 @@ func LoginUserHandler(ctx *gin.Context) {
 
 	// Comparando senhas
 	if err := bcrypt.CompareHashAndPassword([]byte(users.CriptPassword), []byte(request.Password)); err != nil {
-		SendError(ctx, http.StatusBadRequest, "Senha inválida. Digite a senha correta")
-		logger.Errorf("senha inválida. Digite a senha correta")
+		SendError(ctx, http.StatusBadRequest, "Senha inválida, digite a senha correta")
+		logger.Errorf("senha inválida, digite a senha correta")
 		return
 	}
 

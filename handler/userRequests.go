@@ -64,3 +64,17 @@ func (r *CreateLoginRequest) ValidateUser() error {
 
 	return nil
 }
+
+func (r *CreateUserRequest) ValidatePassword() error {
+	if r.ConfirmPassword == "" && r.Password == "" {
+		return fmt.Errorf("corpo do request inválido")
+	}
+	if r.Password == "" {
+		return ErrParamIsRequired("password", "string")
+	}
+	if r.ConfirmPassword != r.Password {
+		return fmt.Errorf("digite senhas iguais")
+	}
+
+	return nil
+}

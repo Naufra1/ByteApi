@@ -23,6 +23,7 @@ func CreateUserHandler(ctx *gin.Context) {
 	hash, err := bcrypt.GenerateFromPassword([]byte(request.Password), cost)
 	if err != nil {
 		logger.Errorf("erro ao encriptar a senha: %v", err)
+		return
 	}
 
 	users := schemas.User{

@@ -9,12 +9,13 @@ import (
 )
 
 type selectUserInfo struct {
-	Id       uint
-	Name     string
-	Email    string
-	Address  string
-	Birthday string
-	Number   int64
+	Id            uint
+	Name          string
+	Email         string
+	Address       string
+	Birthday      string
+	Number        int64
+	CriptPassword string
 }
 
 func ShowUserHandler(ctx *gin.Context) {
@@ -29,16 +30,18 @@ func ShowUserHandler(ctx *gin.Context) {
 		Birthday: users.Birthday,
 		Number:   users.Number,
 	}
+
+	uintID := ConvertStr(id)
+	if uintID == 0 {
+		return
+	}
+
 	if err := db.Model(&users).Where("id= ?", id).Find(&userInfo).Error; err != nil {
 		logger.Errorf("erro ao listar informações do usuário: %v", err.Error())
 		SendError(ctx, http.StatusInternalServerError, "erro ao listar usuário")
 		return
 	}
 
-	uintID := ConvertStr(id)
-	if uintID == 0 {
-		return
-	}
 	if uintID != userInfo.Id {
 		SendError(ctx, http.StatusBadRequest, "usuário invalido")
 		return
