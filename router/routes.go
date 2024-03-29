@@ -14,14 +14,14 @@ func InitializeRoutes(r *gin.Engine) {
 	{
 		v1.GET("/computers", handler.ShowComputersHandler)
 
-		v1.POST("/computer", handler.CreateComputerHandler)
+		v1.POST("/computer/", handler.CreateComputerHandler)
 
-		v1.GET("/computer", handler.ShowComputersHandler)
+		v1.GET("/computer/:id", handler.ShowComputerHandler)
 
 		v1.POST("/signup", handler.CreateUserHandler)
 
 		v1.POST("/signin", handler.LoginUserHandler)
 
-		v1.GET("/user", middleware.VerifyToken, handler.ShowUserHandler)
+		v1.GET("/user/:id", middleware.VerifyToken, handler.ShowUserHandler)
 	}
 }
