@@ -14,6 +14,7 @@ type User struct {
 	Birthday      string
 	Number        int64
 	Address       string
+	Cart          []Cart
 }
 
 type UserResponse struct {
@@ -27,4 +28,5 @@ type UserResponse struct {
 	Birthday      *time.Time `json:"birthday"`
 	Number        int64      `json:"number"`
 	Address       string     `json:"address"`
+	Cart          Cart       `json:"cart"`
 }

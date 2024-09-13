@@ -14,7 +14,7 @@ func InitializeRoutes(r *gin.Engine) {
 	{
 		v1.GET("/computers", handler.ShowComputersHandler)
 
-		v1.POST("/computer/", handler.CreateComputerHandler)
+		v1.POST("/computer", handler.CreateComputerHandler)
 
 		v1.GET("/computer/:id", handler.ShowComputerHandler)
 
@@ -25,5 +25,11 @@ func InitializeRoutes(r *gin.Engine) {
 		v1.GET("/user/:id", middleware.VerifyToken, handler.ShowUserHandler)
 
 		v1.PATCH("/user/:id", middleware.VerifyToken, handler.ChangeUserPassword)
+
+		v1.GET("/cart/:id", middleware.VerifyToken, handler.GetCart)
+
+		v1.POST("/cart/:user_id/:computer_id", middleware.VerifyToken, handler.CreateCartHandler)
+
+		v1.DELETE("/cart/:id", middleware.VerifyToken, handler.DeleteItem)
 	}
 }

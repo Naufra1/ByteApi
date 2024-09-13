@@ -37,14 +37,19 @@ func InitializeSQLite() (*gorm.DB, error) {
 	// Migrando os schemas
 	err = db.AutoMigrate(&schemas.Computer{})
 	if err != nil {
-		logger.Errorf("Erro na migração do sqlite: %v", err)
+		logger.Errorf("Erro na migração de computadores: %v", err)
 		return nil, err
 	}
 
 	err = db.AutoMigrate(&schemas.User{})
 	if err != nil {
-		logger.Errorf("Erro na migração do sqlite: %v", err)
+		logger.Errorf("Erro na migração de usuários: %v", err)
 		return nil, err
+	}
+
+	err = db.AutoMigrate(&schemas.Cart{})
+	if err != nil {
+		logger.Errorf("Erro na migração de carrinhos: %v", err)
 	}
 
 	return db, nil
