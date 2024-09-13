@@ -66,8 +66,6 @@ func VerifyToken(ctx *gin.Context) {
 }
 
 func RemoveBearer(token string) string {
-	if strings.HasPrefix(token, "Bearer ") {
-		token = strings.TrimPrefix("Bearer ", token)
-	}
+	token = strings.TrimPrefix(token, "Bearer ")
 	return token
 }
