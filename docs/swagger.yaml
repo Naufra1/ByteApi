@@ -1,4 +1,125 @@
+definitions:
+  handler.CreateComputerRequest:
+    properties:
+      case:
+        type: string
+      cooler:
+        type: string
+      cpu:
+        type: string
+      gpu:
+        type: string
+      motherboard:
+        type: string
+      name:
+        type: string
+      price:
+        type: string
+      ram:
+        type: string
+      storage:
+        type: string
+    type: object
+  handler.CreateComputerResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.ComputerResponse'
+      message:
+        type: string
+    type: object
+  handler.ErrorResponse:
+    properties:
+      errorCode:
+        type: string
+      message:
+        type: string
+    type: object
+  handler.ListComputerResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.ComputerResponse'
+      message:
+        type: string
+    type: object
+  schemas.ComputerResponse:
+    properties:
+      case:
+        type: string
+      cooler:
+        type: string
+      cpu:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      gpu:
+        type: string
+      id:
+        type: integer
+      motherboard:
+        type: string
+      name:
+        type: string
+      price:
+        type: string
+      ram:
+        type: string
+      storage:
+        type: string
+      updatedAt:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /computer:
+    post:
+      consumes:
+      - application/json
+      description: Create a new computer
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateComputerRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateComputerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Create computer
+      tags:
+      - Computer
+  /computers:
+    get:
+      consumes:
+      - application/json
+      description: List all computers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListComputerResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: List computers
+      tags:
+      - Computer
 swagger: "2.0"

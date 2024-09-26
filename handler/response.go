@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Naufra1/ByteApi/schemas"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,4 +21,19 @@ func SendSuccess(ctx *gin.Context, op string, data interface{}) {
 		"message": fmt.Sprintf("operação do handler %s feita com sucesso", op),
 		"data":    data,
 	})
+}
+
+type ErrorResponse struct {
+	Message string `json:"message"`
+	ErrorCode string `json:"errorCode"`
+}
+
+type CreateComputerResponse struct {
+	Message string `json:"message"`
+	Data schemas.ComputerResponse `json:"data"`
+}
+
+type ListComputerResponse struct {
+	Message string `json:"message"`
+	Data schemas.ComputerResponse `json:"data"`
 }

@@ -37,5 +37,6 @@ func InitializeRoutes(r *gin.Engine) {
 
 		v1.DELETE("/cart/:id", middleware.VerifyToken, handler.DeleteItem)
 	}
-	r.GET("swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+	// Iniciando o swagger
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 }

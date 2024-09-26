@@ -7,6 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Create computer
+// @Description Create a new computer
+// @Tags Computer
+// @Accept json
+// @Produce json 
+// @Param request body CreateComputerRequest true "Request body"
+// @Success 200 {object} CreateComputerResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /computer [post]
 func CreateComputerHandler(ctx *gin.Context) {
 	request := CreateComputerRequest{}
 
