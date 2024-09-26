@@ -20,7 +20,6 @@ func CreateComputerHandler(ctx *gin.Context) {
 
 	computers := schemas.Computer{
 		Name:        request.Name,
-		Image:       request.Image,
 		Price:       request.Price,
 		Case:        request.Case,
 		Cpu:         request.Cpu,

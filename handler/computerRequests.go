@@ -8,7 +8,6 @@ func ErrParamIsRequired(p, t string) error {
 
 type CreateComputerRequest struct {
 	Name        string `json:"name"`
-	Image       string `json:"image"`
 	Price       string `json:"price"`
 	Case        string `json:"case"`
 	Cpu         string `json:"cpu"`
@@ -20,14 +19,11 @@ type CreateComputerRequest struct {
 }
 
 func (r *CreateComputerRequest) Validate() error {
-	if r.Name == "" && r.Image == "" && r.Price == "" && r.Case == "" && r.Cpu == "" && r.Cooler == "" && r.Graphics == "" && r.Motherboard == "" && r.Ram == "" && r.Storage == "" {
+	if r.Name == "" && r.Price == "" && r.Case == "" && r.Cpu == "" && r.Cooler == "" && r.Graphics == "" && r.Motherboard == "" && r.Ram == "" && r.Storage == "" {
 		return fmt.Errorf("corpo do request inválido ou vazio")
 	}
 	if r.Name == "" {
 		return ErrParamIsRequired("name", "string")
-	}
-	if r.Image == "" {
-		return ErrParamIsRequired("image", "string")
 	}
 	if r.Price == "" {
 		return ErrParamIsRequired("price", "string")

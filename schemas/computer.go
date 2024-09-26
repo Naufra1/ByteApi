@@ -9,7 +9,6 @@ import (
 type Computer struct {
 	gorm.Model
 	Name        string
-	Image       string
 	Price       string
 	Case        string
 	Cpu         string
@@ -26,7 +25,6 @@ type ComputerResponse struct {
 	UpdatedAt   time.Time `json:"updatedAt"`
 	DeletedAt   time.Time `json:"deletedAt,omitempty"`
 	Name        string    `json:"name"`
-	Image       string    `json:"image"`
 	Price       string    `json:"price"`
 	Case        string    `json:"case"`
 	Cpu         string    `json:"cpu"`
