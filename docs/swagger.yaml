@@ -103,6 +103,35 @@ paths:
       summary: Create computer
       tags:
       - Computer
+  /computer/{id}:
+    get:
+      consumes:
+      - application/json
+      description: List a specific computer
+      parameters:
+      - description: Computer ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListComputerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: List computer
+      tags:
+      - Computer
   /computers:
     get:
       consumes:

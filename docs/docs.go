@@ -61,6 +61,50 @@ const docTemplate = `{
                 }
             }
         },
+        "/computer/{id}": {
+            "get": {
+                "description": "List a specific computer",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Computer"
+                ],
+                "summary": "List computer",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Computer ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ListComputerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/computers": {
             "get": {
                 "description": "List all computers",
