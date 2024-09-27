@@ -15,9 +15,21 @@ type selectUserInfo struct {
 	Address       string
 	Birthday      string
 	Number        int64
-	CriptPassword string
 }
 
+// @BasePath /api/v1
+
+// @Summary List user
+// @Description List a specific user
+// @Tags User
+// @Accept json
+// @Produce json 
+// @Param id path int true "User ID"
+// @Success 200 {object} ListUserResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Security ApiKeyAuth
+// @Router /user/{id} [get]
 func ShowUserHandler(ctx *gin.Context) {
 	id := ctx.Param("id")
 
@@ -36,7 +48,7 @@ func ShowUserHandler(ctx *gin.Context) {
 		return
 	}
 
-	if err := db.Model(&users).Where("id= ?", id).Find(&userInfo).Error; err != nil {
+	if err := db.Model(&users).Where("id= ?", uintID).Find(&userInfo).Error; err != nil {
 		logger.Errorf("erro ao listar informações do usuário: %v", err.Error())
 		SendError(ctx, http.StatusInternalServerError, "erro ao listar usuário")
 		return

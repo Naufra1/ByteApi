@@ -37,3 +37,23 @@ type ListComputerResponse struct {
 	Message string `json:"message"`
 	Data schemas.ComputerResponse `json:"data"`
 }
+
+type CreateUserResponse struct {
+	Message string `json:"message"`
+	Data schemas.UserResponse `json:"data"`
+}
+
+type CreateLoginResponse struct {
+	Message string `json:"message"`
+	Data schemas.LoginResponse `json:"data"`
+}
+
+type ListUserResponse struct {
+	Message string `json:"message"`
+	Data schemas.UserResponse `json:"data"`
+}
+
+type CreatePasswordChangeResponse struct {
+	Message string `json:"message"`
+	Data schemas.ChangePasswordResponse `json:"data"`
+}
