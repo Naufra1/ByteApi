@@ -7,6 +7,19 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Show cart
+// @Description Show a specific user's cart
+// @Tags Cart
+// @Accept json
+// @Produce json
+// @Param id path int true "User ID"
+// @Success 200 {object} ListCartResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Security ApiKeyAuth
+// @Router /cart/{id} [get]
 func GetCart(ctx *gin.Context) {
 	id := ctx.Param("id")
 	cart := []schemas.Cart{}

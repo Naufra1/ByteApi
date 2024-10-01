@@ -8,6 +8,13 @@ definitions:
       password:
         type: string
     type: object
+  handler.CreateCartItemResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CartResponse'
+      message:
+        type: string
+    type: object
   handler.CreateComputerRequest:
     properties:
       case:
@@ -88,6 +95,13 @@ definitions:
       message:
         type: string
     type: object
+  handler.ListCartResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CartResponse'
+      message:
+        type: string
+    type: object
   handler.ListComputerResponse:
     properties:
       data:
@@ -101,6 +115,18 @@ definitions:
         $ref: '#/definitions/schemas.UserResponse'
       message:
         type: string
+    type: object
+  schemas.CartResponse:
+    properties:
+      computer:
+        $ref: '#/definitions/schemas.ComputerResponse'
+      computerid:
+        description: User       UserResponse     `json:"user"`
+        type: integer
+      id:
+        type: integer
+      userid:
+        type: integer
     type: object
   schemas.ChangePasswordResponse:
     properties:
@@ -169,6 +195,96 @@ definitions:
 info:
   contact: {}
 paths:
+  /cart/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Show a specific user's cart
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListCartResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Show cart
+      tags:
+      - Cart
+  /cart/{item_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a item from cart
+      parameters:
+      - description: Item ID
+        in: path
+        name: item_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateCartItemResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete cart item
+      tags:
+      - Cart
+  /cart/{user_id}/{computer_id}:
+    post:
+      consumes:
+      - application/json
+      description: Create a new cart item
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      - description: Computer ID
+        in: path
+        name: computer_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateCartItemResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Create cart item
+      tags:
+      - Cart
   /computer:
     post:
       consumes:
@@ -196,6 +312,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
       summary: Create computer
       tags:
       - Computer

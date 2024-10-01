@@ -1,12 +1,12 @@
 package router
 
 import (
+	docs "github.com/Naufra1/ByteApi/docs"
 	"github.com/Naufra1/ByteApi/handler"
 	"github.com/Naufra1/ByteApi/middleware"
 	"github.com/gin-gonic/gin"
-	docs "github.com/Naufra1/ByteApi/docs"
-  swaggerfiles "github.com/swaggo/files"
-  ginSwagger "github.com/swaggo/gin-swagger"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func InitializeRoutes(r *gin.Engine) {
@@ -19,7 +19,7 @@ func InitializeRoutes(r *gin.Engine) {
 	{
 		v1.GET("/computers", handler.ShowComputersHandler)
 
-		v1.POST("/computer", handler.CreateComputerHandler)
+		v1.POST("/computer", middleware.VerifyToken, handler.CreateComputerHandler)
 
 		v1.GET("/computer/:id", handler.ShowComputerHandler)
 
@@ -35,7 +35,7 @@ func InitializeRoutes(r *gin.Engine) {
 
 		v1.POST("/cart/:user_id/:computer_id", middleware.VerifyToken, handler.CreateCartHandler)
 
-		v1.DELETE("/cart/:id", middleware.VerifyToken, handler.DeleteItem)
+		v1.DELETE("/cart/:item_id", middleware.VerifyToken, handler.DeleteItem)
 	}
 	// Iniciando o swagger
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
