@@ -671,9 +671,6 @@ const docTemplate = `{
         "schemas.CartResponse": {
             "type": "object",
             "properties": {
-                "computer": {
-                    "$ref": "#/definitions/schemas.ComputerResponse"
-                },
                 "computerid": {
                     "description": "User       UserResponse     ` + "`" + `json:\"user\"` + "`" + `",
                     "type": "integer"

@@ -35,7 +35,7 @@ func CreateCartHandler(ctx *gin.Context) {
 		ComputerId: uintComputerID,
 	}
 
-	if err := db.Preload("Computer").Create(&cart).Error; err != nil {
+	if err := db.Create(&cart).Error; err != nil {
 		logger.Errorf("erro adicionando usuários: %v", err.Error())
 		SendError(ctx, http.StatusInternalServerError, "erro ao criar tabela")
 		return

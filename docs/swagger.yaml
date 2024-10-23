@@ -118,8 +118,6 @@ definitions:
     type: object
   schemas.CartResponse:
     properties:
-      computer:
-        $ref: '#/definitions/schemas.ComputerResponse'
       computerid:
         description: User       UserResponse     `json:"user"`
         type: integer
