@@ -7,6 +7,19 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Create cart item
+// @Description Create a new cart item
+// @Tags Cart
+// @Accept json
+// @Produce json
+// @Param user_id path int true "User ID"
+// @Param computer_id path int true "Computer ID"
+// @Success 200 {object} CreateCartItemResponse
+// @Failure 500 {object} ErrorResponse
+// @Security ApiKeyAuth
+// @Router /cart/{user_id}/{computer_id} [post]
 func CreateCartHandler(ctx *gin.Context) {
 	userID := ctx.Param("user_id")
 	computerID := ctx.Param("computer_id")

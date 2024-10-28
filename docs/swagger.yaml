@@ -1,0 +1,502 @@
+definitions:
+  handler.ChangePasswordRequest:
+    properties:
+      confirmpassword:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  handler.CreateCartItemResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CartResponse'
+      message:
+        type: string
+    type: object
+  handler.CreateComputerRequest:
+    properties:
+      case:
+        type: string
+      cooler:
+        type: string
+      cpu:
+        type: string
+      gpu:
+        type: string
+      motherboard:
+        type: string
+      name:
+        type: string
+      price:
+        type: string
+      ram:
+        type: string
+      storage:
+        type: string
+    type: object
+  handler.CreateComputerResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.ComputerResponse'
+      message:
+        type: string
+    type: object
+  handler.CreateLoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  handler.CreateLoginResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.LoginResponse'
+      message:
+        type: string
+    type: object
+  handler.CreatePasswordChangeResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.ChangePasswordResponse'
+      message:
+        type: string
+    type: object
+  handler.CreateUserRequest:
+    properties:
+      address:
+        type: string
+      birthday:
+        type: string
+      confirmpassword:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      number:
+        type: integer
+      password:
+        type: string
+    type: object
+  handler.CreateUserResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.UserResponse'
+      message:
+        type: string
+    type: object
+  handler.ErrorResponse:
+    properties:
+      errorCode:
+        type: string
+      message:
+        type: string
+    type: object
+  handler.ListCartResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CartResponse'
+      message:
+        type: string
+    type: object
+  handler.ListComputerResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.ComputerResponse'
+      message:
+        type: string
+    type: object
+  handler.ListUserResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.UserResponse'
+      message:
+        type: string
+    type: object
+  schemas.CartResponse:
+    properties:
+      computerid:
+        description: User       UserResponse     `json:"user"`
+        type: integer
+      id:
+        type: integer
+      userid:
+        type: integer
+    type: object
+  schemas.ChangePasswordResponse:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+    type: object
+  schemas.ComputerResponse:
+    properties:
+      case:
+        type: string
+      cooler:
+        type: string
+      cpu:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      gpu:
+        type: string
+      id:
+        type: integer
+      motherboard:
+        type: string
+      name:
+        type: string
+      price:
+        type: string
+      ram:
+        type: string
+      storage:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  schemas.LoginResponse:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+    type: object
+  schemas.UserResponse:
+    properties:
+      address:
+        type: string
+      birthday:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      number:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /cart/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Show a specific user's cart
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListCartResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Show cart
+      tags:
+      - Cart
+  /cart/{item_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a item from cart
+      parameters:
+      - description: Item ID
+        in: path
+        name: item_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateCartItemResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete cart item
+      tags:
+      - Cart
+  /cart/{user_id}/{computer_id}:
+    post:
+      consumes:
+      - application/json
+      description: Create a new cart item
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      - description: Computer ID
+        in: path
+        name: computer_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateCartItemResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Create cart item
+      tags:
+      - Cart
+  /computer:
+    post:
+      consumes:
+      - application/json
+      description: Create a new computer
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateComputerRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateComputerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Create computer
+      tags:
+      - Computer
+  /computer/{id}:
+    get:
+      consumes:
+      - application/json
+      description: List a specific computer
+      parameters:
+      - description: Computer ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListComputerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: List computer
+      tags:
+      - Computer
+  /computers:
+    get:
+      consumes:
+      - application/json
+      description: List all computers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListComputerResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: List computers
+      tags:
+      - Computer
+  /signin:
+    post:
+      consumes:
+      - application/json
+      description: Login a user
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateLoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            token:
+              description: token
+              type: string
+          schema:
+            $ref: '#/definitions/handler.CreateLoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Login user
+      tags:
+      - User
+  /signup:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateUserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Create user
+      tags:
+      - User
+  /user/{id}:
+    get:
+      consumes:
+      - application/json
+      description: List a specific user
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListUserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: List user
+      tags:
+      - User
+    patch:
+      consumes:
+      - application/json
+      description: Change the user password
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ChangePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreatePasswordChangeResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Change password
+      tags:
+      - User
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

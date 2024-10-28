@@ -9,9 +9,23 @@ import (
 	"gorm.io/gorm"
 )
 
+// @BasePath /api/v1
+
+// @Summary Change password
+// @Description Change the user password
+// @Tags User
+// @Accept json
+// @Produce json 
+// @Param id path int true "User ID"
+// @Param request body ChangePasswordRequest true "Request body"
+// @Success 200 {object} CreatePasswordChangeResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Security ApiKeyAuth
+// @Router /user/{id} [patch]
 func ChangeUserPassword(ctx *gin.Context) {
 	id := ctx.Param("id")
-	request := CreateUserRequest{}
+	request := ChangePasswordRequest{}
 
 	ctx.BindJSON(&request)
 
@@ -52,18 +66,16 @@ func ChangeUserPassword(ctx *gin.Context) {
 		return
 	}
 
-	SendSuccess(ctx, "", users)
-
 	if uintID != users.Model.ID {
 		SendError(ctx, http.StatusBadRequest, "usuário invalido")
 		return
 	}
-
+	
 	if err := db.Model(&users).Where("id = ?", id).Update("cript_password", users.CriptPassword).Error; err != nil {
 		logger.Errorf("erro ao acessar informações do usuário: %v", err.Error())
 		SendError(ctx, http.StatusInternalServerError, "erro ao acessar informações do usuário")
 		return
 	}
 
-	SendSuccess(ctx, "patch-password", users.CriptPassword)
+	SendSuccess(ctx, "patch-password", "null")
 }

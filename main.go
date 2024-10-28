@@ -9,6 +9,10 @@ var (
 	logger *config.Logger
 )
 
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
+
 func main() {
 	logger = config.GetLogger("main")
 

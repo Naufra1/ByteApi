@@ -7,6 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary List computer
+// @Description List a specific computer
+// @Tags Computer
+// @Accept json
+// @Produce json 
+// @Param id path int true "Computer ID"
+// @Success 200 {object} ListComputerResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /computer/{id} [get]
 func ShowComputerHandler(ctx *gin.Context) {
 	id := ctx.Param("id")
 

@@ -24,9 +24,17 @@ type UserResponse struct {
 	DeletedAt     time.Time  `json:"deletedAt,omitempty"`
 	Name          string     `json:"name"`
 	Email         string     `json:"email"`
-	CriptPassword string     `json:"criptpassword"`
 	Birthday      *time.Time `json:"birthday"`
 	Number        int64      `json:"number"`
 	Address       string     `json:"address"`
-	Cart          Cart       `json:"cart"`
+}
+
+type LoginResponse struct {
+	ID            uint       `json:"id"`
+	Email         string     `json:"email"`
+}
+
+type ChangePasswordResponse struct {
+	ID            uint       `json:"id"`
+	Email         string     `json:"email"`
 }

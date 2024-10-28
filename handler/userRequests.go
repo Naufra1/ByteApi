@@ -19,6 +19,12 @@ type CreateLoginRequest struct {
 	Password string `json:"password"`
 }
 
+type ChangePasswordRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+	ConfirmPassword string `json:"confirmpassword"`
+}
+
 func (r *CreateUserRequest) Validate() error {
 	if r.Name == "" && r.Email == "" && r.Password == "" && r.Birthday == "" && r.Number <= 0 && r.Address == "" && r.ConfirmPassword == "" {
 		return fmt.Errorf("corpo do request inválido")
@@ -65,12 +71,15 @@ func (r *CreateLoginRequest) ValidateUser() error {
 	return nil
 }
 
-func (r *CreateUserRequest) ValidatePassword() error {
+func (r *ChangePasswordRequest) ValidatePassword() error {
 	if r.ConfirmPassword == "" && r.Password == "" {
 		return fmt.Errorf("corpo do request inválido")
 	}
 	if r.Password == "" {
 		return ErrParamIsRequired("password", "string")
+	}
+	if r.ConfirmPassword == "" {
+		return ErrParamIsRequired("confirm password", "string")
 	}
 	if r.ConfirmPassword != r.Password {
 		return fmt.Errorf("digite senhas iguais")

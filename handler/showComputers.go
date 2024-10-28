@@ -7,6 +7,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary List computers
+// @Description List all computers
+// @Tags Computer
+// @Accept json
+// @Produce json 
+// @Success 200 {object} ListComputerResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /computers [get]
 func ShowComputersHandler(ctx *gin.Context) {
 	computers := []schemas.Computer{}
 

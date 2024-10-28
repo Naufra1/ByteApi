@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Naufra1/ByteApi/schemas"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,4 +21,49 @@ func SendSuccess(ctx *gin.Context, op string, data interface{}) {
 		"message": fmt.Sprintf("operação do handler %s feita com sucesso", op),
 		"data":    data,
 	})
+}
+
+type ErrorResponse struct {
+	Message   string `json:"message"`
+	ErrorCode string `json:"errorCode"`
+}
+
+type CreateComputerResponse struct {
+	Message string                   `json:"message"`
+	Data    schemas.ComputerResponse `json:"data"`
+}
+
+type ListComputerResponse struct {
+	Message string                   `json:"message"`
+	Data    schemas.ComputerResponse `json:"data"`
+}
+
+type CreateUserResponse struct {
+	Message string               `json:"message"`
+	Data    schemas.UserResponse `json:"data"`
+}
+
+type CreateLoginResponse struct {
+	Message string                `json:"message"`
+	Data    schemas.LoginResponse `json:"data"`
+}
+
+type ListUserResponse struct {
+	Message string               `json:"message"`
+	Data    schemas.UserResponse `json:"data"`
+}
+
+type CreatePasswordChangeResponse struct {
+	Message string                         `json:"message"`
+	Data    schemas.ChangePasswordResponse `json:"data"`
+}
+
+type ListCartResponse struct {
+	Message string               `json:"message"`
+	Data    schemas.CartResponse `json:"data"`
+}
+
+type CreateCartItemResponse struct {
+	Message string               `json:"message"`
+	Data    schemas.CartResponse `json:"data"`
 }
